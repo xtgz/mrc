@@ -15,10 +15,10 @@ class worker {
   constructor(privateKey, rpc, total) {
     this.#provider = new SuiClient({ url: rpc });
     this.#total = total;
-    this.#trg = `0xebbba763f5fc01d90c2791c03536a373791b634600e81d4e08b85f275f1274fa::movescription::mint`;
+    this.#trg = `0x830fe26674dc638af7c3d84030e2575f44a2bdc1baa1f4757cfe010a4b106b6a::movescription::mint`;
     this.#TickRecordId =
-      "0xd175b8579ed3ecb823a54aaa52506703b6c18a7fb7ed0a48ae7c14c6d2f5563a";
-    this.#TICK = "SUIS";
+      "0x30ba4c703bbd6c51f6d6f7126e8fbf16bace6984703396b87c92570171ace2a3";
+    this.#TICK = "MOVEER";
     this.#keyPair = Ed25519Keypair.fromSecretKey(fromHEX(privateKey));
     this.#address = this.#keyPair.getPublicKey().toSuiAddress();
   }
@@ -65,7 +65,7 @@ class worker {
     });
     process.send(`${this.#address} 当前余额: ${bal.totalBalance}`);
 
-    if (bal.totalBalance < 4000000) {
+    if (bal.totalBalance < 1000000) {
       // throw new Error(`Insufficient balance`);
       logger.error(`${this.#address} Insufficient balance`);
       return;
